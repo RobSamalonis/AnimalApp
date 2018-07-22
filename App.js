@@ -16,16 +16,29 @@ export default class AnimalApp extends Component {
     authCode: "",
     user: {}
   };
+
   onChangeText(authCode) {
     this.setState({ authCode });
   }
+  onChangeUsernameText(username) {
+    this.setState({ username });
+  }
+  onChangePasswordText(password) {
+    this.setState({ password });
+  }
+  onChangePhoneText(phone_number) {
+    this.setState({ phone_number });
+  }
+  onChangeEmailText(email) {
+    this.setState({ email });
+  }
   signUp() {
     Auth.signUp({
-      username: "admin",
-      password: "Admin123!",
+      username: this.state.username,
+      password: this.state.password,
       attributes: {
-        phone_number: "+12677721647",
-        email: "samalonis@yahoo.com"
+        phone_number: this.state.phone_number,
+        email: this.state.email
       }
     })
       .then(res => {
@@ -37,35 +50,63 @@ export default class AnimalApp extends Component {
   }
   confirmUser() {
     const { authCode } = this.state;
-    Auth.confirmSignUp("admin", authCode)
+    const { username } = this.state;
+    Auth.confirmSignUp(username, authCode)
       .then(res => {
-        alert("successful confirmation: ", res);
+        alert("successful confirmation: " + JSON.stringify(res));
       })
       .catch(err => {
         alert("error confirming user: " + JSON.stringify(err));
       });
   }
+
   signIn() {
     Auth.signIn(username, password)
       .then(user => {
         this.setState({ user });
       })
       .catch(err => {
-        alert("error signing in: ", err);
+        alert("error signing in: " + JSON.stringify(err));
       });
   }
+
   confirmSignIn() {
     Auth.confirmSignIn(user, authCode)
       .then(user => {
-        alert("user: ", user);
+        alert("user: " + JSON.stringify(user));
       })
       .catch(err => {
-        alert("error confirming sign in: ", err);
+        alert("error confirming sign in: " + JSON.stringify(err));
       });
   }
+
   render() {
     return (
       <View style={styles.container}>
+        <TextInput
+          autoCapitalize="none"
+          placeholder="Username"
+          onChangeText={value => this.onChangeUsernameText(value)}
+          style={styles.input}
+        />
+        <TextInput
+          autoCapitalize="none"
+          placeholder="Password"
+          secureTextEntry={true}
+          onChangeText={value => this.onChangePasswordText(value)}
+          style={styles.input}
+        />
+        <TextInput
+          autoCapitalize="none"
+          placeholder="Email"
+          onChangeText={value => this.onChangeEmailText(value)}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Phone"
+          onChangeText={value => this.onChangePhoneText(value)}
+          style={styles.input}
+        />
         <Button title="Sign Up" onPress={this.signUp.bind(this)} />
         <TextInput
           placeholder="Input Code"
