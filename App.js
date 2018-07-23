@@ -1,133 +1,49 @@
-import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput
-} from "react-native";
-import Amplify, { Auth } from "aws-amplify";
-import config from "./src/aws-exports";
-Amplify.configure(config);
+import React from "react";
+import { StatusBar } from "react-native";
 
-export default class AnimalApp extends Component {
+import { Provider, connect } from "react-redux";
+import { Auth } from "aws-amplify";
+
+import Tabs from "./src/auth/Tabs";
+import Nav from "./src/nav/Nav";
+
+class App extends React.Component {
   state = {
-    authCode: "",
-    user: {}
+    user: {},
+    isLoading: true
   };
-
-  onChangeText(authCode) {
-    this.setState({ authCode });
+  async componentDidMount() {
+    StatusBar.setHidden(true);
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      this.setState({ user, isLoading: false });
+    } catch (err) {
+      this.setState({ isLoading: false });
+    }
   }
-  onChangeUsernameText(username) {
-    this.setState({ username });
+  async componentWillReceiveProps(nextProps) {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      this.setState({ user });
+    } catch (err) {
+      this.setState({ user: {} });
+    }
   }
-  onChangePasswordText(password) {
-    this.setState({ password });
-  }
-  onChangePhoneText(phone_number) {
-    this.setState({ phone_number });
-  }
-  onChangeEmailText(email) {
-    this.setState({ email });
-  }
-  signUp() {
-    Auth.signUp({
-      username: this.state.username,
-      password: this.state.password,
-      attributes: {
-        phone_number: this.state.phone_number,
-        email: this.state.email
-      }
-    })
-      .then(res => {
-        alert("successful signup: ", res);
-      })
-      .catch(err => {
-        alert("error signing up: " + JSON.stringify(err));
-      });
-  }
-  confirmUser() {
-    const { authCode } = this.state;
-    const { username } = this.state;
-    Auth.confirmSignUp(username, authCode)
-      .then(res => {
-        alert("successful confirmation: " + JSON.stringify(res));
-      })
-      .catch(err => {
-        alert("error confirming user: " + JSON.stringify(err));
-      });
-  }
-
-  signIn() {
-    Auth.signIn(username, password)
-      .then(user => {
-        this.setState({ user });
-      })
-      .catch(err => {
-        alert("error signing in: " + JSON.stringify(err));
-      });
-  }
-
-  confirmSignIn() {
-    Auth.confirmSignIn(user, authCode)
-      .then(user => {
-        alert("user: " + JSON.stringify(user));
-      })
-      .catch(err => {
-        alert("error confirming sign in: " + JSON.stringify(err));
-      });
-  }
-
   render() {
-    return (
-      <View style={styles.container}>
-        <TextInput
-          autoCapitalize="none"
-          placeholder="Username"
-          onChangeText={value => this.onChangeUsernameText(value)}
-          style={styles.input}
-        />
-        <TextInput
-          autoCapitalize="none"
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={value => this.onChangePasswordText(value)}
-          style={styles.input}
-        />
-        <TextInput
-          autoCapitalize="none"
-          placeholder="Email"
-          onChangeText={value => this.onChangeEmailText(value)}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Phone"
-          onChangeText={value => this.onChangePhoneText(value)}
-          style={styles.input}
-        />
-        <Button title="Sign Up" onPress={this.signUp.bind(this)} />
-        <TextInput
-          placeholder="Input Code"
-          onChangeText={value => this.onChangeText(value)}
-          style={styles.input}
-        />
-        <Button title="Confirm User" onPress={this.confirmUser.bind(this)} />
-      </View>
-    );
+    if (this.state.isLoading) return null;
+    let loggedIn = false;
+    if (this.state.user.username) {
+      loggedIn = true;
+    }
+    if (loggedIn) {
+      return <Nav />;
+    }
+    return <Tabs />;
   }
 }
 
-const styles = StyleSheet.create({
-  input: {
-    height: 50,
-    backgroundColor: "#ededed",
-    marginVertical: 10
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#F5FCFF"
-  }
+const mapStateToProps = state => ({
+  auth: state.auth
 });
+
+export default connect(mapStateToProps)(App);
