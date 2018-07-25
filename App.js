@@ -12,6 +12,7 @@ class App extends React.Component {
     user: {},
     isLoading: true
   };
+
   async componentDidMount() {
     StatusBar.setHidden(true);
     try {
