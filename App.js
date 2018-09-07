@@ -6,6 +6,7 @@ import { Auth } from "aws-amplify";
 
 import Tabs from "./src/auth/Tabs";
 import Nav from "./src/nav/Nav";
+import LoggedInTabs from "./src/nav/Tabs";
 
 class App extends React.Component {
   state = {
@@ -36,7 +37,7 @@ class App extends React.Component {
       loggedIn = true;
     }
     if (loggedIn) {
-      return <Nav />;
+      return <LoggedInTabs />;
     }
     return <Tabs />;
   }
