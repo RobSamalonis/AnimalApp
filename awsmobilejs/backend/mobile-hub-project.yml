@@ -1,5 +1,26 @@
 --- !com.amazonaws.mobilehub.v0.Project 
 features:
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      sampleCloudApi: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: sampleCloudApi
+          requires-signin: false
+        paths:
+          /items: !com.amazonaws.mobilehub.v0.Function 
+            name: sampleLambda
+            codeFilename: uploads/sampleLambda.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            name: sampleLambda
+            codeFilename: uploads/sampleLambda.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -27,5 +48,5 @@ features:
             require-numbers: true
             require-symbols: true
             require-upper-case: true
-name: AnimalApp-2018-07-22-15-46-56
+name: AnimalApp-2018-09-17-19-01-10
 region: us-east-1

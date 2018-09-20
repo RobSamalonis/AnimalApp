@@ -1,0 +1,209 @@
+[{
+	"options": {
+		"option": [
+			"altered", 
+			"hasShots", 
+			"housetrained", 
+			"noDogs", 
+			"noCats"
+		]
+	},
+	"status": "A",
+	"contact": {
+		"phone": "215-240-1240",
+		"state": "PA",
+		"address2": "",
+		"email": "info@savedme.org",
+		"city": "Philadelphia",
+		"zip": "19123",
+		"fax": "",
+		"address1": "858 North 3rd Street"
+	},
+	"age": "Senior",
+	"size": "L",
+	"media": {
+		"photos": {
+			"photo": [{
+				"@size": "pnt",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/1/?bust=1521573418&width=60&-pnt.jpg",
+				"@id": "1"
+			}, {
+				"@size": "fpm",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/1/?bust=1521573418&width=95&-fpm.jpg",
+				"@id": "1"
+			}, {
+				"@size": "x",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/1/?bust=1521573418&width=500&-x.jpg",
+				"@id": "1"
+			}, {
+				"@size": "pn",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/1/?bust=1521573418&width=300&-pn.jpg",
+				"@id": "1"
+			}, {
+				"@size": "t",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/1/?bust=1521573418&width=50&-t.jpg",
+				"@id": "1"
+			}, {
+				"@size": "pnt",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/2/?bust=1529699699&width=60&-pnt.jpg",
+				"@id": "2"
+			}, {
+				"@size": "fpm",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/2/?bust=1529699699&width=95&-fpm.jpg",
+				"@id": "2"
+			}, {
+				"@size": "x",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/2/?bust=1529699699&width=500&-x.jpg",
+				"@id": "2"
+			}, {
+				"@size": "pn",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/2/?bust=1529699699&width=300&-pn.jpg",
+				"@id": "2"
+			}, {
+				"@size": "t",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/2/?bust=1529699699&width=50&-t.jpg",
+				"@id": "2"
+			}, {
+				"@size": "pnt",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/3/?bust=1529699700&width=60&-pnt.jpg",
+				"@id": "3"
+			}, {
+				"@size": "fpm",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/3/?bust=1529699700&width=95&-fpm.jpg",
+				"@id": "3"
+			}, {
+				"@size": "x",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/3/?bust=1529699700&width=500&-x.jpg",
+				"@id": "3"
+			}, {
+				"@size": "pn",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/3/?bust=1529699700&width=300&-pn.jpg",
+				"@id": "3"
+			}, {
+				"@size": "t",
+				"image": "http://photos.petfinder.com/photos/pets/41220815/3/?bust=1529699700&width=50&-t.jpg",
+				"@id": "3"
+			}]
+		}
+	},
+	"id": "41220815",
+	"shelterPetId": "",
+	"breeds": {
+		"breed": "American Bulldog"
+	},
+	"name": "Rosie - SPONSORED",
+	"sex": "F",
+	"description": "Sweetheart Rosie is GREAT with kids! She is an absolute love-bug and adores having her tummy rubbed. She's an older dog who's not tolerant of other dogs or cats, so she needs to be the only pet in her new home. She's potty trained, and walks like a dream on the leash!\n\nAll Saved Me dogs and cats receive a wellness exam at our veterinarian and age-appropriate core vaccines. They are spayed or neutered before they go to their adoptive families.  Dogs over 7 months are tested for heartworm and all cats are tested for FeLV and FIV.\n\nAll animals are microchipped and are eligible for a complimentary 30-day pet health insurance policy from Shelter Care if you provide an e-mail address when you complete the adoption. \n\nWe will ask you for a veterinary reference or three personal references,  proof that you are allowed to have pets where you live (lease or lease addendum or proof of home ownership),  and valid identification.  \n\nAdoption fees are as follows: \nPuppies under seven months - $450.00\nDogs - $350.00\nSenior dogs (8 years and over) - $225.00\nCats and Kittens - $75.00. \n\nYou do not need an appointment to visit with our adoptable pets, but please call ahead or visit our automatically-updated website to confirm that the pet you want to meet is still available. \n215-240-1240\nsavedme.org/adopt",
+	"mix": "yes",
+	"shelterId": "PA741",
+	"lastUpdate": "2018-03-20T19:17:25Z",
+	"animal": "Dog"
+}, {
+	"options": {
+		"option": ["altered", "hasShots"]
+	},
+	"status": "A",
+	"contact": {
+		"phone": "215-240-1240",
+		"state": "PA",
+		"address2": "",
+		"email": "info@savedme.org",
+		"city": "Philadelphia",
+		"zip": "19123",
+		"fax": "",
+		"address1": ""
+	},
+	"age": "Senior",
+	"size": "L",
+	"media": {
+		"photos": {
+			"photo": [{
+				"@size": "pnt",
+				"image": "http://photos.petfinder.com/photos/pets/41555023/1/?bust=1525464627&width=60&-pnt.jpg",
+				"@id": "1"
+			}, {
+				"@size": "fpm",
+				"image": "http://photos.petfinder.com/photos/pets/41555023/1/?bust=1525464627&width=95&-fpm.jpg",
+				"@id": "1"
+			}, {
+				"@size": "x",
+				"image": "http://photos.petfinder.com/photos/pets/41555023/1/?bust=1525464627&width=500&-x.jpg",
+				"@id": "1"
+			}, {
+				"@size": "pn",
+				"image": "http://photos.petfinder.com/photos/pets/41555023/1/?bust=1525464627&width=300&-pn.jpg",
+				"@id": "1"
+			}, {
+				"@size": "t",
+				"image": "http://photos.petfinder.com/photos/pets/41555023/1/?bust=1525464627&width=50&-t.jpg",
+				"@id": "1"
+			}]
+		}
+	},
+	"id": "41555023",
+	"shelterPetId": "",
+	"breeds": {
+		"breed": "Retriever"
+	},
+	"name": "Copper, formerly Boy",
+	"sex": "M",
+	"description": "All Saved Me dogs and cats receive a wellness exam at our veterinarian and age-appropriate core vaccines. They are spayed or neutered before they go to their adoptive families.  Dogs over 7 months are tested for heartworm and all cats are tested for FeLV and FIV.\n\nAll animals are microchipped and are eligible for a complimentary 30-day pet health insurance policy from Shelter Care if you provide an e-mail address when you complete the adoption. \n\nWe will ask you for a veterinary reference or three personal references,  proof that you are allowed to have pets where you live (lease or lease addendum or proof of home ownership),  and valid identification.  \n\nAdoption fees are as follows: \nPuppies under seven months - $450.00\nDogs - $350.00\nSenior dogs (8 years and over) - $225.00\nCats and Kittens - $75.00. \n\nYou do not need an appointment to visit with our adoptable pets, but please call ahead or visit our automatically-updated website to confirm that the pet you want to meet is still available. \n215-240-1240\nsavedme.org/adopt",
+	"mix": "yes",
+	"shelterId": "PA741",
+	"lastUpdate": "2018-05-04T20:10:41Z",
+	"animal": "Dog"
+}, {
+	"options": {
+		"option": ["altered", "hasShots", "housetrained", "noDogs", "noCats", "noKids"]
+	},
+	"status": "A",
+	"contact": {
+		"phone": "215-240-1240",
+		"state": "PA",
+		"address2": "",
+		"email": "info@savedme.org",
+		"city": "Philadelphia",
+		"zip": "19123",
+		"fax": "",
+		"address1": "858 North 3rd Street"
+	},
+	"age": "Adult",
+	"size": "M",
+	"media": {
+		"photos": {
+			"photo": [{
+				"@size": "pnt",
+				"image": "http://photos.petfinder.com/photos/pets/41805398/1/?bust=1528135875&width=60&-pnt.jpg",
+				"@id": "1"
+			}, {
+				"@size": "fpm",
+				"image": "http://photos.petfinder.com/photos/pets/41805398/1/?bust=1528135875&width=95&-fpm.jpg",
+				"@id": "1"
+			}, {
+				"@size": "x",
+				"image": "http://photos.petfinder.com/photos/pets/41805398/1/?bust=1528135875&width=500&-x.jpg",
+				"@id": "1"
+			}, {
+				"@size": "pn",
+				"image": "http://photos.petfinder.com/photos/pets/41805398/1/?bust=1528135875&width=300&-pn.jpg",
+				"@id": "1"
+			}, {
+				"@size": "t",
+				"image": "http://photos.petfinder.com/photos/pets/41805398/1/?bust=1528135875&width=50&-t.jpg",
+				"@id": "1"
+			}]
+		}
+	},
+	"id": "41805398",
+	"shelterPetId": "",
+	"breeds": {
+		"breed": "Terrier"
+	},
+	"name": "Toni - SPONSORED",
+	"sex": "F",
+	"description": "All Saved Me dogs and cats receive a wellness exam at our veterinarian and age-appropriate core vaccines. They are spayed or neutered before they go to their adoptive families.  Dogs over 7 months are tested for heartworm and all cats are tested for FeLV and FIV.\n\nAll animals are microchipped and are eligible for a complimentary 30-day pet health insurance policy from Shelter Care if you provide an e-mail address when you complete the adoption. \n\nWe will ask you for a veterinary reference or three personal references,  proof that you are allowed to have pets where you live (lease or lease addendum or proof of home ownership),  and valid identification.  \n\nAdoption fees are as follows: \nPuppies under seven months - $450.00\nDogs - $350.00\nSenior dogs (8 years and over) - $225.00\nCats and Kittens - $75.00. \n\nYou do not need an appointment to visit with our adoptable pets, but please call ahead or visit our automatically-updated website to confirm that the pet you want to meet is still available. \n215-240-1240\nsavedme.org/adopt",
+	"mix": "yes",
+	"shelterId": "PA741",
+	"lastUpdate": "2018-06-04T18:11:27Z",
+	"animal": "Dog"
+}]

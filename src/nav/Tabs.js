@@ -5,6 +5,7 @@ import { TabNavigator } from "react-navigation";
 import { colors, fonts } from "../theme";
 import Home from "./Home";
 import Profile from "./Profile";
+import Pets from "./Pets";
 
 const styles = StyleSheet.create({
   icon: {
@@ -24,6 +25,12 @@ const routes = {
     screen: Profile,
     navigationOptions: {
       title: "Profile"
+    }
+  },
+  Pets: {
+    screen: Pets,
+    navigationOptions: {
+      title: 'Pets'
     }
   }
 };
