@@ -17,16 +17,10 @@ import { colors, fonts } from "../theme";
 const { width, height } = Dimensions.get("window");
 
 class Home extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
   state = {
     username: ""
   };
-  AnimatedScale = new Animated.Value(1);
-  componentDidMount() {
-    this.animate();
-  }
+
   logout() {
     Auth.signOut()
       .then(() => {
@@ -36,22 +30,7 @@ class Home extends React.Component {
         console.log("err: ", err);
       });
   }
-  navigate() {
-    this.props.navigation.navigate("Route1");
-  }
-  animate() {
-    Animated.timing(this.AnimatedScale, {
-      toValue: 0.8,
-      duration: 1250,
-      useNativeDriver: true
-    }).start(() => {
-      Animated.timing(this.AnimatedScale, {
-        toValue: 1,
-        duration: 1250,
-        useNativeDriver: true
-      }).start(() => this.animate());
-    });
-  }
+
   render() {
     return (
       <View style={styles.container}>
