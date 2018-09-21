@@ -56,7 +56,10 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Home Page</Text>
+          <Text style={styles.welcome}>Profile Page</Text>
+          <Text onPress={this.logout.bind(this)} style={styles.welcome}>
+            Logout
+          </Text>
         </View>
       </View>
     );

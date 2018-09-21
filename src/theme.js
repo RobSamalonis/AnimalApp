@@ -1,6 +1,10 @@
 const colors = {
-  primary: "#FF1493",
-  secondary: "#b9b9b9"
+  primary: "#FB6542",
+  secondary: "#375E97",
+  sky: "#375E97",
+  sunset: "#FB6542",
+  sunflower: "#FFBB00",
+  grass: "#3F681C"
 };
 
 const fonts = {

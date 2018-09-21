@@ -20,7 +20,9 @@ import { fonts, colors } from "../theme";
 import Input from "../components/Input";
 import Button from "../components/Button";
 
-class SignIn extends Component<{}> {
+import LottieView from "lottie-react-native";
+
+class SignIn extends Component {
   state = {
     username: "",
     password: "",
@@ -32,6 +34,10 @@ class SignIn extends Component<{}> {
       [key]: value
     });
   };
+
+  // componentDidMount() {
+  //   this.animation.play();
+  // }
 
   signIn() {
     const { username, password } = this.state;
@@ -57,16 +63,27 @@ class SignIn extends Component<{}> {
       <View style={styles.container}>
         <View style={styles.heading}>
           <Image
-            source={{
-              uri:
-                "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwidm9SK9rPcAhVpmuAKHUfkA1EQjRx6BAgBEAU&url=http%3A%2F%2Fwww.otakuusamagazine.com%2Fjapanese-fans-rank-best-anime-characters-2017%2F&psig=AOvVaw3D_lccOFfIYq8rQqrrVNOZ&ust=1532390629242349"
-            }}
+            source={require("../../assets/love.png")}
             style={styles.headingImage}
             resizeMode="contain"
           />
         </View>
-        <Text style={[styles.greeting]}>Welcome back,</Text>
-        <Text style={[styles.greeting2]}>sign in to continue</Text>
+        {isAuthenticating && (
+          <View style={styles.overlay}>
+            <LottieView
+              source={require("./loading.json")}
+              ref={animation => {
+                this.animation = animation;
+              }}
+              style={{
+                width: 200,
+                height: 200
+              }}
+              autoPlay
+              loop
+            />
+          </View>
+        )}
         <View style={styles.inputContainer}>
           <Input
             placeholder="User Name"
@@ -81,38 +98,24 @@ class SignIn extends Component<{}> {
             value={this.state.password}
             secureTextEntry
           />
-        </View>
 
-        <Button
-          isLoading={isAuthenticating}
-          title="Sign In"
-          onPress={this.signIn.bind(this)}
-        />
-        <Text style={[styles.errorMessage, signInError && { color: "black" }]}>
-          Error logging in. Please try again.
-        </Text>
-        <Text style={[styles.errorMessage, signInError && { color: "black" }]}>
-          {signInErrorMessage}
-        </Text>
-        {showSignInConfirmationModal && (
-          <Modal>
-            <View style={styles.modal}>
-              <Input
-                placeholder="Authorization Code"
-                type="authCode"
-                keyboardType="numeric"
-                onChangeText={this.onChangeText}
-                value={this.state.authCode}
-                keyboardType="numeric"
-              />
-              <Button
-                title="Confirm"
-                onPress={this.confirm.bind(this)}
-                isLoading={isAuthenticating}
-              />
-            </View>
-          </Modal>
-        )}
+          <Button
+            isLoading={isAuthenticating}
+            title="Sign In"
+            onPress={this.signIn.bind(this)}
+            style={styles.signInButton}
+          />
+          <Text
+            style={[styles.errorMessage, signInError && { color: "black" }]}
+          >
+            Error logging in. Please try again.
+          </Text>
+          <Text
+            style={[styles.errorMessage, signInError && { color: "black" }]}
+          >
+            {signInErrorMessage}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -139,11 +142,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   heading: {
-    flexDirection: "row"
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   headingImage: {
-    width: 38,
-    height: 38
+    width: 180,
+    height: 180
   },
   errorMessage: {
     fontSize: 12,
@@ -152,15 +158,14 @@ const styles = StyleSheet.create({
     fontFamily: fonts.base
   },
   inputContainer: {
-    marginTop: 20
+    flex: 1,
+    paddingHorizontal: 40
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 40
+    justifyContent: "center"
   },
   greeting: {
-    marginTop: 20,
     fontSize: 24,
     fontFamily: fonts.light
   },
@@ -169,5 +174,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 5,
     fontFamily: fonts.light
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.sky,
+    opacity: 0.5
   }
 });
