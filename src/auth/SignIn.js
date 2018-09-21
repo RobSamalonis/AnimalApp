@@ -35,10 +35,6 @@ class SignIn extends Component {
     });
   };
 
-  // componentDidMount() {
-  //   this.animation.play();
-  // }
-
   signIn() {
     const { username, password } = this.state;
     this.props.dispatchAuthenticate(username, password);
