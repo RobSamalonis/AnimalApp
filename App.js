@@ -4,7 +4,7 @@ import { StatusBar } from "react-native";
 import { Provider, connect } from "react-redux";
 import { Auth } from "aws-amplify";
 
-import Tabs from "./src/auth/Tabs";
+import Tabs from "./src/auth/AuthTabs";
 import LoggedInTabs from "./src/nav/Tabs";
 
 class App extends React.Component {

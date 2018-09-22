@@ -40,11 +40,6 @@ class SignIn extends Component {
     this.props.dispatchAuthenticate(username, password);
   }
 
-  confirm() {
-    const { authCode } = this.state;
-    this.props.dispatchConfirmUserLogin(authCode);
-  }
-
   render() {
     const { fontsLoaded } = this.state;
     const {
