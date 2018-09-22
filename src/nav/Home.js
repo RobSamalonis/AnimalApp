@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   Button,
-  Animated,
   Dimensions
 } from "react-native";
 
