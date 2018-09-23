@@ -5,6 +5,7 @@ import { TabNavigator } from "react-navigation";
 import { colors, fonts } from "../theme";
 import Home from "./Home";
 import Profile from "./Profile";
+import List from "./List";
 
 const styles = StyleSheet.create({
   icon: {
@@ -18,6 +19,12 @@ const routes = {
     screen: Home,
     navigationOptions: {
       title: "Home"
+    }
+  },
+  List: {
+    screen: List,
+    navigationOptions: {
+      title: "List"
     }
   },
   Profile: {

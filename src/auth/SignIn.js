@@ -62,7 +62,7 @@ class SignIn extends Component {
         {isAuthenticating && (
           <View style={styles.overlay}>
             <LottieView
-              source={require("./loading.json")}
+              source={require("../../assets/loading.json")}
               ref={animation => {
                 this.animation = animation;
               }}
