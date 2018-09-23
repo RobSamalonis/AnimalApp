@@ -14,11 +14,11 @@ import {
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 
-import { authenticate, confirmUserLogin } from "../actions";
+import { authenticate, confirmUserLogin } from "../actions/auth.action";
 import { fonts, colors } from "../theme";
 
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../components/input";
+import Button from "../components/button";
 
 import LottieView from "lottie-react-native";
 

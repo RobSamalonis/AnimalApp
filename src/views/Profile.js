@@ -12,7 +12,7 @@ import {
 import { connect } from "react-redux";
 import { Auth } from "aws-amplify";
 
-import { logOut } from "../actions";
+import { logOut } from "../actions/auth.action";
 import { colors, fonts } from "../theme";
 const { width, height } = Dimensions.get("window");
 

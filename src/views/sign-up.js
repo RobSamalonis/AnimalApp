@@ -15,10 +15,10 @@ import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 
 import { fonts, colors } from "../theme";
-import { createUser, confirmUserSignUp } from "../actions";
+import { createUser, confirmUserSignUp } from "../actions/auth.action";
 
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../components/input";
+import Button from "../components/button";
 
 const initialState = {
   username: "",

@@ -3,9 +3,8 @@ import { Image, StyleSheet } from "react-native";
 import { TabNavigator } from "react-navigation";
 
 import { colors, fonts } from "../theme";
-import Home from "./Home";
-import Profile from "./Profile";
-import List from "./List";
+import SignIn from "./sign-in";
+import SignUp from "./sign-up";
 
 const styles = StyleSheet.create({
   icon: {
@@ -15,22 +14,16 @@ const styles = StyleSheet.create({
 });
 
 const routes = {
-  Home: {
-    screen: Home,
+  SignIn: {
+    screen: SignIn,
     navigationOptions: {
-      title: "Home"
+      title: "Sign In"
     }
   },
-  List: {
-    screen: List,
+  SignUp: {
+    screen: SignUp,
     navigationOptions: {
-      title: "List"
-    }
-  },
-  Profile: {
-    screen: Profile,
-    navigationOptions: {
-      title: "Profile"
+      title: "Sign Up"
     }
   }
 };

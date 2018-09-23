@@ -9,27 +9,14 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
-import { Auth } from "aws-amplify";
-
-import { logOut } from "../actions";
 import { colors, fonts } from "../theme";
+
 const { width, height } = Dimensions.get("window");
 
 class Home extends React.Component {
   state = {
     username: ""
   };
-
-  logout() {
-    Auth.signOut()
-      .then(() => {
-        this.props.dispatchLogout();
-      })
-      .catch(err => {
-        console.log("err: ", err);
-      });
-  }
-
   render() {
     return (
       <View style={styles.container}>

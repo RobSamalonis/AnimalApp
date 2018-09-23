@@ -4,8 +4,8 @@ import { StatusBar } from "react-native";
 import { Provider, connect } from "react-redux";
 import { Auth } from "aws-amplify";
 
-import AuthNav from "./src/views/AuthNav";
-import LoggedInNav from "./src/views/LoggedInNav";
+import AuthNav from "./src/views/auth-nav";
+import LoggedInNav from "./src/views/logged-in-nav";
 
 class App extends React.Component {
   state = {
