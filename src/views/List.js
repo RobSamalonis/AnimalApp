@@ -74,7 +74,6 @@ export default class List extends Component {
             renderRow={rowData => {
               return (
                 <View style={styles.listItem}>
-                  {console.log("why")}
                   <View style={styles.imageWrapper}>
                     <Image
                       style={{ width: 70, height: 70 }}
