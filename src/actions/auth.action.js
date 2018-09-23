@@ -19,27 +19,27 @@ import {
 import { Alert } from "react-native";
 import { Auth } from "aws-amplify";
 
-function signUp() {
+const signUp = () => {
   return {
     type: SIGN_UP
   };
-}
+};
 
-function signUpSuccess(user) {
+const signUpSuccess = user => {
   return {
     type: SIGN_UP_SUCCESS,
     user
   };
-}
+};
 
-function signUpFailure(err) {
+const signUpFailure = err => {
   return {
     type: SIGN_UP_FAILURE,
     error: err
   };
-}
+};
 
-export function createUser(username, password, email, phone_number) {
+const createUser = (username, password, email, phone_number) => {
   return dispatch => {
     dispatch(signUp());
     let phone;
@@ -67,35 +67,35 @@ export function createUser(username, password, email, phone_number) {
         dispatch(signUpFailure(err));
       });
   };
-}
+};
 
-function logIn() {
+const logIn = () => {
   return {
     type: LOG_IN
   };
-}
+};
 
-export function logOut() {
+const logOut = () => {
   return {
     type: LOG_OUT
   };
-}
+};
 
-function logInSuccess(user) {
+const logInSuccess = user => {
   return {
     type: LOG_IN_SUCCESS,
     user: user
   };
-}
+};
 
-function logInFailure(err) {
+const logInFailure = err => {
   return {
     type: LOG_IN_FAILURE,
     error: err
   };
-}
+};
 
-export function authenticate(username, password) {
+const authenticate = (username, password) => {
   return dispatch => {
     dispatch(logIn());
     Auth.signIn(username, password)
@@ -108,21 +108,21 @@ export function authenticate(username, password) {
         dispatch(logInFailure(err));
       });
   };
-}
+};
 
-export function showSignInConfirmationModal() {
+const showSignInConfirmationModal = () => {
   return {
     type: SHOW_SIGN_IN_CONFIRMATION_MODAL
   };
-}
+};
 
-export function showSignUpConfirmationModal() {
+const showSignUpConfirmationModal = () => {
   return {
     type: SHOW_SIGN_UP_CONFIRMATION_MODAL
   };
-}
+};
 
-export function confirmUserLogin(authCode) {
+const confirmUserLogin = authCode => {
   return (dispatch, getState) => {
     dispatch(confirmLogIn());
     const {
@@ -139,29 +139,29 @@ export function confirmUserLogin(authCode) {
         dispatch(confirmSignUpFailure(err));
       });
   };
-}
+};
 
-function confirmLogIn() {
+const confirmLogIn = () => {
   return {
     type: CONFIRM_LOGIN
   };
-}
+};
 
-function confirmLoginSuccess(user) {
+const confirmLoginSuccess = user => {
   return {
     type: CONFIRM_LOGIN_SUCCESS,
     user
   };
-}
+};
 
-function confirmLoginFailure() {
+const confirmLoginFailure = () => {
   return {
     type: CONFIRM_LOGIN_FAILURE,
     user
   };
-}
+};
 
-export function confirmUserSignUp(username, authCode) {
+const confirmUserSignUp = (username, authCode) => {
   return dispatch => {
     dispatch(confirmSignUp());
     Auth.confirmSignUp(username, authCode)
@@ -177,23 +177,33 @@ export function confirmUserSignUp(username, authCode) {
         dispatch(confirmSignUpFailure(err));
       });
   };
-}
+};
 
-function confirmSignUp() {
+const confirmSignUp = () => {
   return {
     type: CONFIRM_SIGNUP
   };
-}
+};
 
-function confirmSignUpSuccess() {
+const confirmSignUpSuccess = () => {
   return {
     type: CONFIRM_SIGNUP_SUCCESS
   };
-}
+};
 
-function confirmSignUpFailure(error) {
+const confirmSignUpFailure = error => {
   return {
     type: CONFIRM_SIGNUP_FAILURE,
     error
   };
-}
+};
+
+export {
+  createUser,
+  logOut,
+  authenticate,
+  showSignInConfirmationModal,
+  showSignUpConfirmationModal,
+  confirmUserLogin,
+  confirmUserSignUp
+};
