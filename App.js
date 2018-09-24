@@ -8,6 +8,12 @@ import Tabs from "./src/auth/Tabs";
 import Nav from "./src/nav/Nav";
 import LoggedInTabs from "./src/nav/Tabs";
 
+import Amplify from 'aws-amplify';
+import aws_exports from './src/aws-exports';
+
+Amplify.configure(aws_exports);
+
+
 class App extends React.Component {
   state = {
     user: {},

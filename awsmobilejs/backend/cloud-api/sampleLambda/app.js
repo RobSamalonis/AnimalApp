@@ -33,7 +33,9 @@ AWS.config.update({ region: process.env.REGION })
 app.get('/items', function(req, res) {
   // Add your code here
   // Return the API Gateway event and query string parameters for example
-  res.json(req.apiGateway.event);
+  res.json({
+    body: "HELLO WORLD"
+  });
 });
 
 app.get('/items/*', function(req, res) {

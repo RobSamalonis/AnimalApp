@@ -52,14 +52,17 @@ class Home extends React.Component {
       }).start(() => this.animate());
     });
   }
+  async getData() {
+    const data = await API.get('pets', '/pets')
+    console.log(data);
+    return data;
+  };
   render() {
+    let data = this.getData();
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Profile Page</Text>
-          <Text onPress={this.logout.bind(this)} style={styles.welcome}>
-            Logout
-          </Text>
+          <Text style={styles.welcome}>{"data"}</Text>
         </View>
       </View>
     );

@@ -1,26 +1,38 @@
 --- !com.amazonaws.mobilehub.v0.Project 
+apps:
+  react-native: !com.amazonaws.mobilehub.v0.AppDO {}
 features:
   cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
     components:
-      sampleCloudApi: !com.amazonaws.mobilehub.v0.API 
+      pets: !com.amazonaws.mobilehub.v0.API 
         attributes:
-          name: sampleCloudApi
+          disable-aws-auth: false
+          name: pets
           requires-signin: false
+          sdk-generation-stage-name: Development
         paths:
-          /items: !com.amazonaws.mobilehub.v0.Function 
-            name: sampleLambda
-            codeFilename: uploads/sampleLambda.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
+          /pets: !com.amazonaws.mobilehub.v0.Function 
+            description: 'Handler for calls to resource path : /pets/{proxy+}'
             environment: {}
-          '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: sampleLambda
-            codeFilename: uploads/sampleLambda.zip
-            handler: lambda.handler
-            enableCORS: true
+            handler: index.handler
+            hashcode: o8sWiJcy9NAl17BCwQWu2TLtsPpk48G1Kr3ZOsz0Txs=
+            memorySize: '128'
+            modified: '2018-09-23T19:07:54.183+0000'
+            name: petsHandler
             runtime: nodejs6.10
+            timeout: '3'
+            version: ChDzHN6r0NQpme8OTFZv3xdHKOKh8SvJ
+          '/pets/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            description: 'Handler for calls to resource path : /pets/{proxy+}'
             environment: {}
+            handler: index.handler
+            hashcode: o8sWiJcy9NAl17BCwQWu2TLtsPpk48G1Kr3ZOsz0Txs=
+            memorySize: '128'
+            modified: '2018-09-23T19:07:54.183+0000'
+            name: petsHandler
+            runtime: nodejs6.10
+            timeout: '3'
+            version: jq4GDqZRZ2NrQ.hnZqc1ytQ5bNltTfdY
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -48,5 +60,5 @@ features:
             require-numbers: true
             require-symbols: true
             require-upper-case: true
-name: AnimalApp-2018-09-17-19-01-10
+name: AnimalApp-2018-07-22-15-46-56
 region: us-east-1
