@@ -16,6 +16,20 @@ import { logOut } from "../actions";
 import { colors, fonts } from "../theme";
 const { width, height } = Dimensions.get("window");
 
+import { withAuthenticator } from 'aws-amplify-react-native'
+import { API, graphqlOperation } from 'aws-amplify'
+
+
+const listQuery = `query listPets {
+  listPets {
+    items {
+      id
+      name
+    }
+  }
+}
+`
+
 class Pets extends React.Component {
   static navigationOptions = {
     header: null
@@ -51,6 +65,10 @@ class Pets extends React.Component {
         useNativeDriver: true
       }).start(() => this.animate());
     });
+  }
+  async componentWillMount() {
+    const pets = await API.graphql(graphqlOperation(listQuery))
+    console.log(pets.data.listPets.items);
   }
   render() {
     return (
