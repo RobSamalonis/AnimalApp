@@ -6,7 +6,8 @@ import {
   Image,
   Button,
   Animated,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -20,7 +21,9 @@ import { withAuthenticator } from 'aws-amplify-react-native'
 import { API, graphqlOperation } from 'aws-amplify'
 
 
-const listQuery = `query listPets {
+
+const listQuery = `
+query list {
   listPets {
     items {
       id
@@ -34,13 +37,14 @@ class Pets extends React.Component {
   static navigationOptions = {
     header: null
   };
+
   state = {
-    username: ""
+    pets: [],
+    text: "Data NOT Gathered"
   };
+
   AnimatedScale = new Animated.Value(1);
-  componentDidMount() {
-    this.animate();
-  }
+
   logout() {
     Auth.signOut()
       .then(() => {
@@ -50,9 +54,11 @@ class Pets extends React.Component {
         console.log("err: ", err);
       });
   }
+
   navigate() {
     this.props.navigation.navigate("Route1");
   }
+  
   animate() {
     Animated.timing(this.AnimatedScale, {
       toValue: 0.8,
@@ -66,15 +72,21 @@ class Pets extends React.Component {
       }).start(() => this.animate());
     });
   }
-  async componentWillMount() {
+  async componentDidMount() {
     const pets = await API.graphql(graphqlOperation(listQuery))
     console.log(pets.data.listPets.items);
+    // this.setState({ pets: pets.data.listPets.items });
+    this.state({ pets: pets.data.listPets.items })
+    this.state({ text: "Data Gathered" })
+    Alert.alert("Alert", JSON.stringify(pets));
+    this.animate();
   }
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Pets Page</Text>
+          <Text style={styles.welcome}>{JSON.stringify(this.state.pets)}</Text>
+          <Text style={styles.welcome}>{this.state.text}</Text>
         </View>
       </View>
     );
