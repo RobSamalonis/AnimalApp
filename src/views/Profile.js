@@ -12,7 +12,7 @@ import {
 import { connect } from "react-redux";
 import { Auth } from "aws-amplify";
 
-import { logOut } from "../actions";
+import { logOut } from "../actions/auth.action";
 import { colors, fonts } from "../theme";
 const { width, height } = Dimensions.get("window");
 
@@ -23,10 +23,7 @@ class Home extends React.Component {
   state = {
     username: ""
   };
-  AnimatedScale = new Animated.Value(1);
-  componentDidMount() {
-    this.animate();
-  }
+
   logout() {
     Auth.signOut()
       .then(() => {
@@ -36,27 +33,12 @@ class Home extends React.Component {
         console.log("err: ", err);
       });
   }
-  navigate() {
-    this.props.navigation.navigate("Route1");
-  }
-  animate() {
-    Animated.timing(this.AnimatedScale, {
-      toValue: 0.8,
-      duration: 1250,
-      useNativeDriver: true
-    }).start(() => {
-      Animated.timing(this.AnimatedScale, {
-        toValue: 1,
-        duration: 1250,
-        useNativeDriver: true
-      }).start(() => this.animate());
-    });
-  }
   render() {
+    let data = this.getData();
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Home Page</Text>
+          <Text style={styles.welcome}>{"data"}</Text>
         </View>
       </View>
     );

@@ -4,9 +4,8 @@ import { StatusBar } from "react-native";
 import { Provider, connect } from "react-redux";
 import { Auth } from "aws-amplify";
 
-import Tabs from "./src/auth/Tabs";
-import Nav from "./src/nav/Nav";
-import LoggedInTabs from "./src/nav/Tabs";
+import AuthNav from "./src/views/auth-nav";
+import LoggedInNav from "./src/views/logged-in-nav";
 
 import Amplify from 'aws-amplify';
 import aws_exports from './src/aws-exports';
@@ -44,9 +43,9 @@ class App extends React.Component {
       loggedIn = true;
     }
     if (loggedIn) {
-      return <LoggedInTabs />;
+      return <LoggedInNav />;
     }
-    return <Tabs />;
+    return <AuthNav />;
   }
 }
 

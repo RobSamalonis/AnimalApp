@@ -15,10 +15,10 @@ import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 
 import { fonts, colors } from "../theme";
-import { createUser, confirmUserSignUp } from "../actions";
+import { createUser, confirmUserSignUp } from "../actions/auth.action";
 
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../components/input";
+import Button from "../components/button";
 
 const initialState = {
   username: "",
@@ -28,7 +28,7 @@ const initialState = {
   authCode: ""
 };
 
-class SignUp extends Component<{}> {
+class SignUp extends Component {
   state = initialState;
 
   onChangeText = (key, value) => {
@@ -70,16 +70,6 @@ class SignUp extends Component<{}> {
     } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.heading}>
-          <Image
-            source={{
-              uri:
-                "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwidm9SK9rPcAhVpmuAKHUfkA1EQjRx6BAgBEAU&url=http%3A%2F%2Fwww.otakuusamagazine.com%2Fjapanese-fans-rank-best-anime-characters-2017%2F&psig=AOvVaw3D_lccOFfIYq8rQqrrVNOZ&ust=1532390629242349"
-            }}
-            style={styles.headingImage}
-            resizeMode="contain"
-          />
-        </View>
         <Text style={styles.greeting}>Welcome,</Text>
         <Text style={styles.greeting2}>sign up to continue</Text>
         <View style={styles.inputContainer}>

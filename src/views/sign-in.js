@@ -14,11 +14,13 @@ import {
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 
-import { authenticate, confirmUserLogin } from "../actions";
+import { authenticate, confirmUserLogin } from "../actions/auth.action";
 import { fonts, colors } from "../theme";
 
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../components/input";
+import Button from "../components/button";
+
+import LottieView from "lottie-react-native";
 
 class SignIn extends Component {
   state = {
@@ -36,11 +38,6 @@ class SignIn extends Component {
   signIn() {
     const { username, password } = this.state;
     this.props.dispatchAuthenticate(username, password);
-  }
-
-  confirm() {
-    const { authCode } = this.state;
-    this.props.dispatchConfirmUserLogin(authCode);
   }
 
   render() {
@@ -62,6 +59,22 @@ class SignIn extends Component {
             resizeMode="contain"
           />
         </View>
+        {isAuthenticating && (
+          <View style={styles.overlay}>
+            <LottieView
+              source={require("../../assets/loading.json")}
+              ref={animation => {
+                this.animation = animation;
+              }}
+              style={{
+                width: 200,
+                height: 200
+              }}
+              autoPlay
+              loop
+            />
+          </View>
+        )}
         <View style={styles.inputContainer}>
           <Input
             placeholder="User Name"
@@ -94,25 +107,6 @@ class SignIn extends Component {
             {signInErrorMessage}
           </Text>
         </View>
-        {showSignInConfirmationModal && (
-          <Modal>
-            <View style={styles.modal}>
-              <Input
-                placeholder="Authorization Code"
-                type="authCode"
-                keyboardType="numeric"
-                onChangeText={this.onChangeText}
-                value={this.state.authCode}
-                keyboardType="numeric"
-              />
-              <Button
-                title="Confirm"
-                onPress={this.confirm.bind(this)}
-                isLoading={isAuthenticating}
-              />
-            </View>
-          </Modal>
-        )}
       </View>
     );
   }
@@ -171,5 +165,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 5,
     fontFamily: fonts.light
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.sky,
+    opacity: 0.5
   }
 });

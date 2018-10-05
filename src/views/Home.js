@@ -5,64 +5,23 @@ import {
   StyleSheet,
   Image,
   Button,
-  Animated,
   Dimensions
 } from "react-native";
 
 import { connect } from "react-redux";
-import { Auth } from "aws-amplify";
-
-import { logOut } from "../actions";
 import { colors, fonts } from "../theme";
+
 const { width, height } = Dimensions.get("window");
 
 class Home extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
   state = {
     username: ""
   };
-  AnimatedScale = new Animated.Value(1);
-  componentDidMount() {
-    this.animate();
-  }
-  logout() {
-    Auth.signOut()
-      .then(() => {
-        this.props.dispatchLogout();
-      })
-      .catch(err => {
-        console.log("err: ", err);
-      });
-  }
-  navigate() {
-    this.props.navigation.navigate("Route1");
-  }
-  animate() {
-    Animated.timing(this.AnimatedScale, {
-      toValue: 0.8,
-      duration: 1250,
-      useNativeDriver: true
-    }).start(() => {
-      Animated.timing(this.AnimatedScale, {
-        toValue: 1,
-        duration: 1250,
-        useNativeDriver: true
-      }).start(() => this.animate());
-    });
-  }
-  async getData() {
-    const data = await API.get('pets', '/pets')
-    console.log(data);
-    return data;
-  };
   render() {
-    let data = this.getData();
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>{"data"}</Text>
+          <Text style={styles.welcome}>Home Page</Text>
         </View>
       </View>
     );
