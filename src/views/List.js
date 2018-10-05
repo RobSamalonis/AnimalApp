@@ -87,6 +87,9 @@ export default class List extends Component {
                       style={{ width: 60, height: 80 }}
                       source={{
                         uri:
+                          !item.media ||
+                          !item.media.photos ||
+                          !item.media.photos.photo ||
                           item.media.photos.photo[0].image === "" ||
                           item.media.photos.photo[0].image === null
                             ? "https://via.placeholder.com/60x80.jpg"
@@ -94,7 +97,6 @@ export default class List extends Component {
                       }}
                     />
                   </View>
-                  {console.log(item.media.photos.photo[0].image)}
                   <View style={{ flex: 1 }}>
                     <Text style={styles.title}>{item.animal}</Text>
                     <Text style={styles.subtitle}>{item.age}</Text>
