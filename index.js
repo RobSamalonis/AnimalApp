@@ -11,11 +11,9 @@ import thunk from "redux-thunk";
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // Amplify
-import config from "./src/aws-exports"; // this needs to be created or added by you, see README
+import config from "./aws-exports"; // this needs to be created or added by you, see README
 import Amplify from "aws-amplify";
 Amplify.configure(config);
-
-import AppSyncConfig from "./appsync-config";
 
 // App
 const AnimalApp = () => (

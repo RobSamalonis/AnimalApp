@@ -10,6 +10,7 @@ import {
 import LottieView from "lottie-react-native";
 import { colors, fonts } from "../theme";
 import pets from "../../data/pets.json";
+import { API, graphqlOperation } from "aws-amplify";
 
 export default class List extends Component {
   constructor(props) {
@@ -51,19 +52,21 @@ export default class List extends Component {
   }
 
   componentDidMount() {
-    //Start getting the first batch of data from reddit
-    // this.fetchData(responseJson => {
-    //   let ds = new ListView.DataSource({
-    //     rowHasChanged: (r1, r2) => r1 !== r2
-    //   });
-    //   const data = responseJson.data.children;
+    const listQuery = `
+    query list {
+      listPets {
+        items {
+          id
+          name
+        }
+      }
+    }
+    `;
 
-    //   this.setState({
-    //     dataSource: ds.cloneWithRows(data),
-    //     isLoading: false,
-    //     _data: data
-    //   });
-    // });
+    const r = API.graphql(graphqlOperation(listQuery)).then(r =>
+      console.log(r.data)
+    );
+
     let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.setState({
       dataSource: ds.cloneWithRows(pets),
