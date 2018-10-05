@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import LottieView from "lottie-react-native";
 import { colors, fonts } from "../theme";
+import pets from "../../data/pets.json";
 
 export default class List extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export default class List extends Component {
   _fetchMore() {
     this.fetchData(responseJson => {
       const data = this.state._data.concat(responseJson.data.children);
+      // console.log(data);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(data),
         isLoadingMore: false,
@@ -50,17 +52,23 @@ export default class List extends Component {
 
   componentDidMount() {
     //Start getting the first batch of data from reddit
-    this.fetchData(responseJson => {
-      let ds = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      });
-      const data = responseJson.data.children;
-      this.setState({
-        dataSource: ds.cloneWithRows(data),
-        isLoading: false,
-        _data: data,
-        _dataAfter: responseJson.data.after
-      });
+    // this.fetchData(responseJson => {
+    //   let ds = new ListView.DataSource({
+    //     rowHasChanged: (r1, r2) => r1 !== r2
+    //   });
+    //   const data = responseJson.data.children;
+
+    //   this.setState({
+    //     dataSource: ds.cloneWithRows(data),
+    //     isLoading: false,
+    //     _data: data
+    //   });
+    // });
+    let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.setState({
+      dataSource: ds.cloneWithRows(pets),
+      isLoading: false,
+      _data: pets
     });
   }
 
@@ -71,28 +79,25 @@ export default class List extends Component {
           <ListView
             removeClippedSubviews={false}
             dataSource={this.state.dataSource}
-            renderRow={rowData => {
+            renderRow={item => {
               return (
                 <View style={styles.listItem}>
                   <View style={styles.imageWrapper}>
                     <Image
-                      style={{ width: 70, height: 70 }}
+                      style={{ width: 60, height: 80 }}
                       source={{
                         uri:
-                          rowData.data.icon_img === "" ||
-                          rowData.data.icon_img === null
-                            ? "https://via.placeholder.com/70x70.jpg"
-                            : rowData.data.icon_img
+                          item.media.photos.photo[0].image === "" ||
+                          item.media.photos.photo[0].image === null
+                            ? "https://via.placeholder.com/60x80.jpg"
+                            : "https://www.personalizationmall.com/cat_image/300/16486-37015.jpg"
                       }}
                     />
                   </View>
+                  {console.log(item.media.photos.photo[0].image)}
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.title}>
-                      {rowData.data.display_name}
-                    </Text>
-                    <Text style={styles.subtitle}>
-                      {rowData.data.public_description}
-                    </Text>
+                    <Text style={styles.title}>{item.animal}</Text>
+                    <Text style={styles.subtitle}>{item.age}</Text>
                   </View>
                 </View>
               );
