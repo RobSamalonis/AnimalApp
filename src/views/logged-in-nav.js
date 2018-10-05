@@ -5,7 +5,7 @@ import { TabNavigator } from "react-navigation";
 import { colors, fonts } from "../theme";
 import Home from "./home";
 import Profile from "./profile";
-import List from "./list";
+import List from "./scrollable-list";
 
 const styles = StyleSheet.create({
   icon: {
