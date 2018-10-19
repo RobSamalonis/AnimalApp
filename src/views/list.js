@@ -41,7 +41,7 @@ export default class List extends Component {
   _fetchMore() {
     this.fetchData(responseJson => {
       const data = this.state._data.concat(responseJson.data.children);
-      // console.log(data);
+      console.log(data);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(data),
         isLoadingMore: false,
@@ -63,8 +63,8 @@ export default class List extends Component {
     }
     `;
 
-    const r = API.graphql(graphqlOperation(listQuery)).then(r =>
-      console.log(r.data)
+    const r = API.graphql(graphqlOperation(listQuery)).then(res =>
+      console.log(res.data)
     );
 
     let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
