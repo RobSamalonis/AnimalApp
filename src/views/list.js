@@ -5,12 +5,14 @@ import {
   Text,
   View,
   ListView,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from "react-native";
 import LottieView from "lottie-react-native";
 import { colors, fonts } from "../theme";
 import pets from "../../data/pets.json";
 import { API, graphqlOperation } from "aws-amplify";
+import Modal from "react-native-modal";
 
 export default class List extends Component {
   constructor(props) {
@@ -18,13 +20,21 @@ export default class List extends Component {
     this.fetchMore = this._fetchMore.bind(this);
     this.fetchData = this._fetchData.bind(this);
     this.state = {
+      isModalVisible: false,
       dataSource: null,
       isLoading: true,
       isLoadingMore: false,
       _data: null,
-      _dataAfter: ""
+      _dataAfter: "",
+      selectedItem: null
     };
   }
+
+  _toggleModal = item =>
+    this.setState({
+      isModalVisible: !this.state.isModalVisible,
+      selectedItem: item
+    });
 
   _fetchData(callback) {
     const params =
@@ -77,51 +87,65 @@ export default class List extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <View>
         {this.state.dataSource && (
-          <ListView
-            removeClippedSubviews={false}
-            dataSource={this.state.dataSource}
-            renderRow={item => {
-              return (
-                <View style={styles.listItem}>
-                  <View style={styles.imageWrapper}>
-                    <Image
-                      style={{ width: 60, height: 80 }}
-                      source={{
-                        uri:
-                          !item.media ||
-                          !item.media.photos ||
-                          !item.media.photos.photo ||
-                          item.media.photos.photo[0].image === "" ||
-                          item.media.photos.photo[0].image === null
-                            ? "https://via.placeholder.com/60x80.jpg"
-                            : "https://www.personalizationmall.com/cat_image/300/16486-37015.jpg"
-                      }}
-                    />
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.title}>{item.animal}</Text>
-                    <Text style={styles.subtitle}>{item.age}</Text>
-                  </View>
-                </View>
-              );
-            }}
-            onEndReached={() =>
-              this.setState({ isLoadingMore: true }, () => this.fetchMore())
-            }
-            renderFooter={() => {
-              return (
-                this.state.isLoadingMore && (
-                  <View style={{ flex: 1, padding: 10 }}>
-                    <ActivityIndicator size="small" />
-                  </View>
-                )
-              );
-            }}
-          />
+          <View>
+            <ListView
+              removeClippedSubviews={false}
+              dataSource={this.state.dataSource}
+              renderRow={item => {
+                return (
+                  <TouchableOpacity onPress={() => this._toggleModal(item)}>
+                    <View style={styles.listItem}>
+                      <View style={styles.imageWrapper}>
+                        <Image
+                          style={{ width: 60, height: 80 }}
+                          source={{
+                            uri:
+                              !item.media ||
+                              !item.media.photos ||
+                              !item.media.photos.photo ||
+                              item.media.photos.photo[0].image === "" ||
+                              item.media.photos.photo[0].image === null
+                                ? "https://via.placeholder.com/60x80.jpg"
+                                : "https://www.personalizationmall.com/cat_image/300/16486-37015.jpg"
+                          }}
+                        />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.title}>{item.animal}</Text>
+                        <Text style={styles.subtitle}>{item.age}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                );
+              }}
+              onEndReached={() =>
+                this.setState({ isLoadingMore: true }, () => this.fetchMore())
+              }
+              renderFooter={() => {
+                return (
+                  this.state.isLoadingMore && (
+                    <View style={{ flex: 1, padding: 10 }}>
+                      <ActivityIndicator size="small" />
+                    </View>
+                  )
+                );
+              }}
+            />
+            <Modal isVisible={this.state.isModalVisible}>
+              <View style={{ flex: 1, backgroundColor: "white" }}>
+                <TouchableOpacity onPress={() => this._toggleModal(null)}>
+                  <Text>Hide me!</Text>
+                </TouchableOpacity>
+                {this.state.selectedItem && (
+                  <Text>AGE: {this.state.selectedItem.age}</Text>
+                )}
+              </View>
+            </Modal>
+          </View>
         )}
-      </React.Fragment>
+      </View>
     );
   }
 }
